@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('template/head.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.head.innerHTML += data;
+                    // Atur judul halaman khusus di sini
+                    document.title = "PPDB | SMP-SMA ADVENT SOGOKMO";
+                })
+                .catch(error => console.error('Error loading head:', error));
+        });
+    </script>
+</head>
+
+
+<body>
+<header id="header"></header>
+
+<!-- Modal JADWAL-->
+<div class="modal fade" id="jadwalModal" tabindex="-1" aria-labelledby="jadwalModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="jadwalModalLabel">Jadwal Pendaftaran</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p> Sosialiasi dan Promosi <br><strong><i class="bi bi-calendar"></i>&nbsp; 7 - 14 Juni 2024</strong><br><br>
+        Pendaftaran PPDB<br><strong>
+          <!-- <i class="bi bi-calendar"></i>&nbsp; Tahap I : 17 - 21 Juni 2024 <br> -->
+          <i class="bi bi-calendar"></i>&nbsp; 24 Juni - 5 Juli 2024 </strong><br><br>
+        Masa Pengenalan Lingkungan Sekolah (MPLS) <br><strong><i class="bi bi-calendar"></i>&nbsp; 11 - 13 Juli 2024</strong><br><br>
+        Mulai KBM Semester Baru <br><strong><i class="bi bi-calendar"></i>&nbsp; 15 Juli 2024</strong>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Notifikasi -->
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="notificationModalLabel">Notifikasi Baru</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body chat-message">
+        <!-- Pesan Notifikasi Pertama -->
+        <div class="message">
+          <div class="message-header">
+            <i class="bi bi-person-circle"></i>
+            <span class="message-info">Panitia • <span class="message-date">21 Juni 2024</span></span>
+          </div>
+          <div class="message-content">
+            Pendaftaran telah DIBUKA. Silahkan datang ke kampus WMVAA (SMP-SMA Advent Sogokmo). Kami layani dari pagi Jam 8.00 - 12.00. Terimakasih 🙏🙏🙏
+          </div>
+        </div>
+        <br>
+        <!-- Pesan Notifikasi Kedua -->
+        <div class="message">
+          <div class="message-header">
+            <i class="bi bi-person-circle"></i>
+            <span class="message-info">Panitia • <span class="message-date">24 Juni 2024</span></span>
+          </div>
+          <div class="message-content">
+            MPLS akan dilaksanakan pada tanggal 11-13 Juli 2024. Persiapkan diri dengan baik. Salam sukses! 📚✏️
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal FAQ -->
+<div class="modal fade modal-faq" id="faqModal" tabindex="-1" aria-labelledby="faqModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="faqModalLabel">Pertanyaan yang Sering Diajukan (FAQ)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Accordion -->
+        <div class="accordion" id="accordionFAQ">
+          <!-- Pertanyaan 1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <strong>Apa syarat pendaftaran di sekolah?</strong>
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
+              <div class="accordion-body">
+                Persyaratan:<br>
+                1. FC Ijazah jenjang sebelumnya (khusus lulusan 2023)<br>
+                2. FC Surat Keterangan Lulus untuk lulusan 2024<br>
+                3. FC Kartu Keluarga<br>
+                4. FC Raport semester akhir<br>
+                5. Membayar Uang Pendaftaran<br>
+                Semua Persyaratan diatas dilampirkan dengan Formulir Pendataran
+              </div>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <strong>Bagaimana cara mendaftar?</strong>
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFAQ">
+              <div class="accordion-body">
+                1) Anda dapat mendaftar dengan cara melengkapi persyaran dan ke Sekolah lalu ambil Formulir Pendaftaran dan lampiran semua peryaratan <br>
+                2) Anda Dapat Download formulirnya, print kemudian lampirkan peryaratan dan bawa ke sekolah<br>
+                3) Jika kewalahan karena jauh/kendala lainya, anda dapat mengikirmkan berkasnya via Chat Whatsapp kepada panitia melalui kontak Panitia
+              </div>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <strong>Saya Belum memiliki Uang Pendaftaran yang Cukup? Apakah Bisa mendaftar?</strong>
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFAQ">
+              <div class="accordion-body">
+                Bisa. Anda bisa mendaftar tanpa membayar uang sekolah. Kami menghargai usaha anda dalam mencari uang sekolah, sehingga akan masuk di tagihan dan diharapkan dapat membayar selama bersekolah di SMP-SMA Advent Sogokmo. Namun kami sangat berharap untuk membayar/melunasi hingga MPLS/MOS
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero d-flex align-items-center">
+  <div class="container" data-aos="zoom-out" data-aos-delay="100">
+    <div class="row align-items-center">
+      <div class="col-xl-6">
+        <span style="color: #B9F5FF;">Telah Dibuka</span>
+        <h1 id="typed-text">PENERIMAAN PESERTA DIDIK BARU</h1>
+        <h2 style="color: #FFE6FB;">SMP-SMA ADVENT SOGOKMO</h2>
+        <span style="color: #B9F5FF;">Tahun Pelajaran 2024/2025</span><br>
+        <a href="#persyaratan" style="background: linear-gradient(to right, rgba(144, 0, 149, 1), rgba(56, 154, 255, 1));" class="btn-get-started scrollto"><strong><i class="bi bi-box-arrow-in-right"></i> Cek Persyaratan</strong></a><br>
+        <a href="#" class="jadwal-daftar btn-get-started" data-bs-toggle="modal" data-bs-target="#jadwalModal"><strong><i class="bi bi-calendar"></i> Jadwal Pendaftaran</strong></a>
+        <!-- <button href="#" data-bs-toggle="modal" data-bs-target="#jadwalModal"><strong><i class="bi bi-calendar"></i> Jadwal Pendaftaran</strong></button> -->
+
+        <!-- Container untuk timer -->
+        <!-- <p id="countdown"></p> -->
+
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-shape-divider">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+      <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+      <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+    </svg>
+  </div>
+</section>
+<!-- End Hero -->
+
+
+
+
+  <main id="main">
+
+   <!-- ======= PERSYARATAN Section ======= -->
+<section id="persyaratan" class="persyaratan">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Persyaratan</h2>
+      <p>Apa Saja Yang harus Dilengkapi?</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+          <img style="width: 100%; border-radius: 10px;" src="assets/img/flayer-ppdb-wmvaa.png" alt="Flyer PPDB WMVAA">
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+          <i class="bi bi-file-earmark-text"></i>
+          <h4>1. Mengisi Formulir Pendaftaran</h4>
+          <p>&#10004; Formulir dapat diambil di SMP-SMA Advent Sogokmo atau download dibawah ini<br>&#10004; Jika download sendiri, silahkan print, isi formulir tersebut dan bawa ke panitia dilampirkan dengan persyaratan lainnya<br>
+            <a href="assets/docs/form-pendaftaran-wmvaa.pdf" type="button" class="btn btn-success" style="margin-top: 10px;">Download</a>
+          </p>
+        </div>
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+          <i class="bi bi-filetype-doc"></i>
+          <h4>2. FC Ijazah atau SKL</h4>
+          <p>&#10004; Fotocopy ijazah jenjang sebelumnya (Ijazah SD bagi yang mendaftar di SMP dan ijazah SMP bagi yang mau mendaftar di SMA)<br>&#10004; Bagi tamatan tahun 2024, cukup membawa fotocopy Surat Kelulusan</p>
+        </div>
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+          <i class="bi bi-file-image"></i>
+          <h4>3. FC Kartu Keluarga & Pas Photo</h4>
+          <p>&#10004; Fotocopy Kartu Keluarga (pastikan nama sudah sesuai dengan ijazah)<br>&#10004; Pas Photo Ukuran 3 x 4 = 1 lembar dengan warna latar sesuai tahun lahir masing-masing (biru = tahun lahir genap & merah = tahun lahir ganjil)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End PERSYARATAN Section -->
+
+
+
+<section id="fasilitas" class="fasilitas section-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>FASILITAS SEKOLAH</h2>
+      <p>Fasilitas yang tersedia</p>
+    </div>
+
+    <div class="row">
+      <!-- Icon Box Asrama -->
+      <div class="col-md-6">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon-box-inner">
+            <div class="icon-box-image">
+              <img src="assets/img/fasilitas/asrama1.jpg" alt="Asrama">
+            </div>
+            <div class="icon-box-content">
+              <h4>Asrama</h4>
+              <p>Asrama permanen (tembok) untuk laki-laki dan perempuan masing-masing dengan fasilitas lengkap dan kegiatan rohani</p>
+              <button type="button" class="btn btn-success" data-title="Asrama" data-description="Asrama permanen (tembok) untuk laki-laki dan perempuan masing-masing dengan fasilitas lengkap dan kegiatan rohani. Disini dilakukan Ibadah Pagi dan Malam. Biaya hanya Rp. 200.000 per bulan. Biaya tersebut hanya membackup makan 3 x sehari dengan porsi 1 piring Rp. 5.000 yang merupakan sangat murah di Wamena. Biaya Fasilitas di asrama FREE atau GRATIS" data-slide="asrama"><i class="bi bi-plus"></i>&nbsp;Detail</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Icon Box Lab Komputer -->
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon-box-inner">
+            <div class="icon-box-image">
+              <img src="assets/img/fasilitas/lab-komputer1.jpg" alt="Lab Komputer">
+            </div>
+            <div class="icon-box-content">
+              <h4>Lab Komputer + Akses Internet</h4>
+              <p>Memfasilitasi komputer beserta akses internet kepada siswa untuk belajar Komputer dan membuat tugas serta melakukan ujian CBT</p>
+              <button type="button" class="btn btn-success" data-title="Lab Komputer + Akses Internet" data-description="Memfasilitasi komputer beserta akses internet kepada siswa untuk belajar Komputer dan membuat tugas serta melakukan ujian CBT. Dengan 30-an lebih komputer, siswa mengikuti kelas informatika dan juga mencari di internet dan membuat tugas-tugas presentasi. Tidak hanya itu, digunakan juga untuk Ujian Berbasi Komputer setiap semester" data-slide="lab-komputer"><i class="bi bi-plus"></i>&nbsp;Detail</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Icon Box Perpustakaan -->
+      <div class="col-md-6 mt-4">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+          <div class="icon-box-inner">
+            <div class="icon-box-image">
+              <img src="assets/img/fasilitas/perpustakaan1.jpg" alt="Perpustakaan">
+            </div>
+            <div class="icon-box-content">
+              <h4>Perpustakaan</h4>
+              <p>Tersedia buku-buku pelajaran dan bacaan berkualitas untuk siswa</p>
+              <button type="button" class="btn btn-success" data-title="Perpustakaan" data-description="Tersedia buku-buku pelajaran dan bacaan berkualitas untuk siswa. Buku-buku Rohani yang siap membentuk tabiat dan karakter setiap siswa yang mau membacanya. Tersedia juga buku mata pelajaran. Tidak hanya itu, perpustakaan juga digunakan untuk kelas bible study bagi siswa yang tinggal di asrama." data-slide="perpustakaan"><i class="bi bi-plus"></i>&nbsp;Detail</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Icon Box Lab IPA -->
+      <div class="col-md-6 mt-4">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+          <div class="icon-box-inner">
+            <div class="icon-box-image">
+              <img src="assets/img/fasilitas/lab-ipa1.jpg" alt="Lab IPA">
+            </div>
+            <div class="icon-box-content">
+              <h4>Lab IPA</h4>
+              <p>Sebagai sarana meningkatkan pengetahuan dan keterampilan siswa khususnya dalam pelajaran IPA</p>
+              <button type="button" class="btn btn-success" data-title="Lab IPA" data-description="Sebagai sarana meningkatkan pengetahuan dan keterampilan siswa khususnya dalam pelajaran IPA. Setiap mata pelajaran IPA untuk SMP, digunakan untuk melakukan praktek juga untuk Siswa yang mengambil peminatan IPA di SMA untuk mata pelajaran seperti FISIKA, KIMIA dan BIOLOGI." data-slide="lab-ipa"><i class="bi bi-plus"></i>&nbsp;Detail</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title mt-5 text-center">
+      <button class="btn btn-success show-more-facilities-btn">Fasilitas Lainnya 
+        <i class="bi bi-chevron-double-down"></i>
+      </button>
+    </div>
+
+    <!-- Container untuk menampilkan fasilitas tambahan -->
+    <div id="additionalFacilities" style="display: none; margin-top: -100px;">
+      <div class="row mt-4">
+        <!-- Tambahkan icon box tambahan di sini -->
+        <div class="col-md-6 mt-4">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon-box-inner">
+                <div class="icon-box-image">
+                  <img src="assets/img/fasilitas/lab-ipa1.jpg" alt="Lab IPA">
+                </div>
+                <div class="icon-box-content">
+                  <h4>Kantin Sekolah & Dining</h4>
+                  <p>Menjual Snacak, makanan, alat tulis. juga merupakan Dining Room sebagai tempat makan siswa yang tinggal di asrama</p>
+                  <button type="button" class="btn btn-success" data-title="Lab IPA" data-description="Menjual Snacak, makanan, alat tulis. juga merupakan Dining Room sebagai tempat makan siswa yang tinggal di asrama." data-slide="lab-ipa"><i class="bi bi-plus"></i>&nbsp;Detail</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-4">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon-box-inner">
+                <div class="icon-box-image">
+                  <img src="assets/img/fasilitas/lab-ipa1.jpg" alt="Lab IPA">
+                </div>
+                <div class="icon-box-content">
+                  <h4>Lapangan Sepak Bola Mini dan Bola Voly</h4>
+                  <p>Lapangan Sepak Bola Mini dan Bola Voly untuk digunakan mempraktekkan permainan bola besar dan juga dijadikan tempat Upacara bendera.</p>
+                  <button type="button" class="btn btn-success" data-title="Lab IPA" data-description="apangan Sepak Bola Mini dan Bola Voly untuk digunakan mempraktekkan permainan bola besar dan juga dijadikan tempat Upacara bendera." data-slide="lab-ipa"><i class="bi bi-plus"></i>&nbsp;Detail</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+      <div class="section-title mt-5 text-center">
+        <button class="btn btn-success close-additional-facilities-btn">Tutup Fasilitas Lainnya 
+          <i class="bi bi-chevron-double-up"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- AND FASILITAS SEKOLAH -->
+
+<!-- Modal Structure -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detail Fasilitas</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="modalCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <!-- Images will be dynamically added here based on the button clicked -->
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#modalCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#modalCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <ol class="carousel-indicators">
+          <!-- Indikator titik-titik akan ditambahkan secara dinamis oleh JavaScript -->
+        </ol>
+        <p id="modalDescription"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======= KEGIATAN PENGEMBANGAN DIRI ======= -->
+<section id="services" class="services">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Program Pengembangan Siswa</h2>
+      <p>Program Unggulan Kami</p>
+    </div>
+
+    <div class="row demo-card-wrapper">
+      <div class="col-md-6">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+          <i class="bi bi-book-half"></i>
+          <h4>Follow The Bible & 777 Prayer</h4>
+          <p>&#10004; Mendahului Kegiatan Belajar Mengajar dengan membaca Alkitab 1 pasal setiap pagi dalam kelompok <br>
+            &#10004; Tetap terhubung dengan Tuhan melalui doa setiap pukul 07.00, 09.00 dan 12.00 waktu jam belajar <br>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+          <i class="bi bi-app-indicator"></i>
+          <h4>Pathfinder</h4>
+          <p>&#10004; Program Pengembangan tabiat yang kegiatannya meliputi pelayanan masyarakat, berkemah (tingkat wilayah, provinsi, nasional bahkan internasional), kerajinan, classwork, berbaris, studi Alkitab, Sejarah Kekristenan, dan pelatihan kepemimpinan<br>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+          <i class="bi bi-command"></i>
+          <h4>Chapel Worship</h4>
+          <p>&#10004; Menikmati kebersamaan melalui ibadah bersama semua siswa dan guru setiap hari Rabu Pagi sebelum Belajar</p>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+          <i class="bi bi-image"></i>
+          <h4>Lainnya:</h4>
+          <p>&#10004; English Day setiap hari Jumat
+            <!-- <br>&#10004; Bahasa Daerah setiap hari Kamis -->
+            <br>&#10004; Mata Pelajaran Mulok (Kesehatan & Bahasa Daerah)
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Services Section -->
+
+<!-- ======= Contact Section ======= -->
+<section style="margin-bottom: -120px;" id="contact" class="contact contact-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Contact Panitia</h2>
+      <p>Silahkan hubungi panitia</p>
+    </div>
+
+    <div class="row" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="info-box">
+              <i class="bx bx-map"></i>
+              <h3>Our Address</h3>
+              <p>Jl. Wamena-Kurima, Sogokmo, Kec. Asotipo, Kab. Jayawijaya <br>
+                Papua Pegunungan - Indonesia</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="info-box mt-4">
+              <a href="#"><i class="bx bx-envelope"></i></a>
+              <h3>Email Us</h3>
+              <p>smp.adventsogokmo07@gmail.com</p>
+              <p>sma.adventsogokmo07@gmail.com</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="info-box mt-4">
+              <a href="https://wa.me/+6282190822641/"><i class="bx bxl-whatsapp"></i></a>
+              <h3>Chat Us</h3>
+              <p>+62 821 9929 8320 - Miss Linda (Ketua Panitia)</p>
+              <p>+62 821 9082 2641 - Sir Frengky (Sie Pendataan)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Contact Section -->
+
+
+  </main>
+  <!-- End #main -->
+
+
+<footer id="footer"></footer>
+
+  <!-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> -->
+
+
+  <a href="https://wa.me/6282190822641" class="whatsapp-float" target="_blank">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<!-- <script src="assets/vendor/php-email-form/validate.js"></script> -->
+
+<!-- Bootstrap JS File -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+<!-- MY CUSTOM JS -->
+<!-- <script src="assets/js/form-whatsapp.js"></script> -->
+
+<!-- Script untuk memuat header dan footer -->
+ <script>
+        // Memuat header
+        fetch('template/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+
+        // Memuat footer
+        fetch('template/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var text = "PENERIMAAN PESERTA DIDIK BARU";
+      var index = 0;
+      var intervalId;
+
+      function animateText() {
+        document.getElementById('typed-text').textContent = text.slice(0, index + 1);
+        index++;
+
+        if (index === text.length) {
+          clearInterval(intervalId);
+        }
+      }
+
+      intervalId = setInterval(animateText, 100); // Mengatur kecepatan mengetik (100 milidetik per karakter)
+    });
+  </script>
+
+ <script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+  const moreFacilitiesButton = document.querySelector('.show-more-facilities-btn');
+  const additionalFacilities = document.getElementById('additionalFacilities');
+  const closeAdditionalFacilitiesButton = document.querySelector('.close-additional-facilities-btn');
+
+  moreFacilitiesButton.addEventListener('click', function() {
+    additionalFacilities.style.display = 'block'; // Menampilkan icon box tambahan
+    this.style.display = 'none'; // Menyembunyikan tombol "Fasilitas Lainnya"
+  });
+
+  closeAdditionalFacilitiesButton.addEventListener('click', function() {
+    additionalFacilities.style.display = 'none'; // Menyembunyikan icon box tambahan
+    moreFacilitiesButton.style.display = 'block'; // Menampilkan kembali tombol "Fasilitas Lainnya"
+    moreFacilitiesButton.classList.add('btn', 'btn-success'); // Pastikan tombol memiliki kelas yang benar
+  });
+});
+
+
+ </script>
+
+
+<!-- JavaScript untuk menangani modul detail fasilitas -->
+<script>
+  // JavaScript untuk menangani modul detail fasilitas
+document.addEventListener('DOMContentLoaded', function() {
+  const buttons = document.querySelectorAll('.icon-box button');
+  const modalDescription = document.getElementById('modalDescription');
+  const modalTitle = document.getElementById('exampleModalLabel');
+  const modalCarousel = new bootstrap.Carousel(document.getElementById('modalCarousel'), {
+    interval: 3000  // Ganti gambar setiap 3 detik
+  });
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const iconBox = button.closest('.icon-box');
+      const title = iconBox.querySelector('h4').innerText.trim(); // Ambil judul dari icon box yang diklik
+      const fullDescription = button.getAttribute('data-description'); // Ambil deskripsi lengkap dari atribut data-description
+      const slide = button.getAttribute('data-slide'); // Ambil data-slide untuk menentukan gambar slideshow
+
+      // Tambahkan gambar-gambar sesuai dengan slide yang dipilih
+      const carouselInner = document.querySelector('#modalCarousel .carousel-inner');
+      carouselInner.innerHTML = '';
+
+      if (slide === 'asrama') {
+        carouselInner.innerHTML += `
+          <div class="carousel-item active">
+            <img src="assets/img/fasilitas/asrama1.jpg" class="d-block w-100 rounded-10" alt="Asrama 1">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/fasilitas/asrama2.jpg" class="d-block w-100 rounded-10" alt="Asrama 2">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/fasilitas/asrama3.jpg" class="d-block w-100 rounded-10" alt="Asrama 3">
+          </div>
+        `;
+      } else if (slide === 'lab-komputer') {
+        carouselInner.innerHTML += `
+          <div class="carousel-item active">
+            <img src="assets/img/fasilitas/lab-komputer1.jpg" class="d-block w-100 rounded-10" alt="Lab Komputer 1">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/fasilitas/lab-komputer2.jpg" class="d-block w-100 rounded-10" alt="Lab Komputer 2">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/fasilitas/lab-komputer3.jpg" class="d-block w-100 rounded-10" alt="Lab Komputer 3">
+          </div>
+        `;
+      } else if (slide === 'perpustakaan') {
+        carouselInner.innerHTML += `
+          <div class="carousel-item active">
+            <img src="assets/img/fasilitas/perpustakaan1.jpg" class="d-block w-100 rounded-10" alt="Perpustakaan 1">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/fasilitas/perpustakaan2.jpg" class="d-block w-100 rounded-10" alt="Perpustakaan 2">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/fasilitas/perpustakaan3.jpg" class="d-block w-100 rounded-10" alt="Perpustakaan 3">
+          </div>
+        `;
+      } else if (slide === 'lab-ipa') {
+        carouselInner.innerHTML += `
+          <div class="carousel-item active">
+            <img src="assets/img/fasilitas/lab-ipa1.jpg" class="d-block w-100 rounded-10" alt="Lab IPA 1">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/fasilitas/lab-ipa2.jpg" class="d-block w-100 rounded-10" alt="Lab IPA 2">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/fasilitas/lab-ipa3.jpg" class="d-block w-100 rounded-10" alt="Lab IPA 3">
+          </div>
+        `;
+      }
+
+      modalTitle.innerHTML = `<strong>Detail Fasilitas ${title}</strong>`; // Tambahkan judul ke dalam modal
+      modalDescription.innerHTML = `<p>${fullDescription}</p>`; // Tambahkan deskripsi lengkap ke dalam modal
+
+      // Reset carousel to first slide when modal opens
+      modalCarousel.to(0);
+
+      $('#detailModal').modal('show'); // Tampilkan modal dengan jQuery
+
+      // Tambahkan indikator titik-titik (carousel indicators)
+      const carouselIndicators = document.createElement('ol');
+      carouselIndicators.classList.add('carousel-indicators');
+
+      for (let i = 0; i < carouselInner.children.length; i++) {
+        const indicator = document.createElement('li');
+        indicator.setAttribute('data-bs-target', '#modalCarousel');
+        indicator.setAttribute('data-bs-slide-to', i.toString());
+        if (i === 0) {
+          indicator.classList.add('active');
+        }
+        carouselIndicators.appendChild(indicator);
+      }
+
+      // Masukkan indikator titik-titik ke dalam modal body sebelum deskripsi
+      modalCarousel._element.querySelector('.modal-body').insertBefore(carouselIndicators, modalDescription);
+
+
+      document.querySelector('#modalCarousel .modal-body').appendChild(carouselIndicators);
+    });
+  });
+});
+
+</script>
+
+
+
+</body>
+
+</html>
