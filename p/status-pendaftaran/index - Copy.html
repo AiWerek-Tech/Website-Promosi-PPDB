@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../../template/head.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load head.html');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Ubah path untuk link CSS
+                    data = data.replace(/href="assets\//g, 'href="../../assets/');
+                    data = data.replace(/href="style.css/g, 'href="../../style.css');
+                    // Ubah path untuk script JavaScript
+                    data = data.replace(/src="assets\//g, 'src="../../assets/');
+
+                    document.head.innerHTML += data;
+                    // Atur judul halaman khusus di sini
+                    document.title = "Status Pendaftaran PPDB | SMP-SMA ADVENT SOGOKMO";
+                })
+                .catch(error => console.error('Error loading head:', error));
+        });
+    </script>
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol style="font-family: Poppins, sans-serif;">
+                <li><a href="../../">Home</a></li>
+                <li><a href="">Info</a></li>
+                <li>Status Pendaftaran</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Main Content -->
+    <main class="container" style="height: 100vh;">
+        <div id="search-box" class="mb-4" style="padding-top: 30px;">
+            <input type="text" id="search-input" class="form-control mb-2" placeholder="Cari berdasarkan nama...">
+            <div id="results" class="row">
+                <!-- Tempat untuk hasil pencarian -->
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="detailModalLabel">Detail Pendaftaran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div id="modalContent">
+                  <!-- Tempat untuk menampilkan detail pendaftaran -->
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </main>
+    <!-- End Main Content -->
+
+    <footer id="footer"></footer>
+
+    <!-- Script untuk memuat header dan footer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Memuat header
+            fetch('../../template/header.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load header.html');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Manipulasi semua href di dalam data
+                    data = data.replace(/href=""/g, 'href="../../"');
+                    data = data.replace(/href="#hero"/g, 'href="../../"');
+                    data = data.replace(/href="#persyaratan"/g, 'href="../../#persyaratan"');
+                    data = data.replace(/href="#services"/g, 'href="../../#services"');
+                    data = data.replace(/href="#fasilitas"/g, 'href="../../#fasilitas"');
+                    data = data.replace(/href="#contact"/g, 'href="../../#contact"');
+                    data = data.replace(/href="p\/jumlah_pendaftar\/"/g, 'href=""');
+                    // Manipulasi semua src di dalam data
+                    data = data.replace(/src="assets\/img\/wmvaappdb\.png"/g, 'src="../../assets/img/wmvaappdb.png"');
+                    // Masukkan header.html ke dalam elemen header
+                    const header = document.getElementById('header');
+                    if (header) {
+                        header.innerHTML = data;
+                    } else {
+                        console.error('Header element not found.');
+                    }
+                })
+                .catch(error => console.error('Error loading header:', error));
+
+            // Memuat footer
+            fetch('../../template/footer.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load footer.html');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Manipulasi semua href di dalam data
+                    data = data.replace(/href="#hero"/g, 'href="../../"');
+                    data = data.replace(/href="#persyaratan"/g, 'href="../../#persyaratan"');
+                    data = data.replace(/href="#services"/g, 'href="../../#services"');
+                    data = data.replace(/href="#fasilitas"/g, 'href="../../#fasilitas"');
+                    data = data.replace(/href="#contact"/g, 'href="../../#contact"');
+                    // Manipulasi semua src di dalam data
+                    data = data.replace(/src="assets\/img\/adventist_education_logo\.png"/g, 'src="../../assets/img/adventist_education_logo.png"');
+                    data = data.replace(/src="assets\/img\/kumerlogo\.png"/g, 'src="../../assets/img/kumerlogo.png"');
+                    // Masukkan footer.html ke dalam elemen footer
+                    const footer = document.getElementById('footer');
+                    if (footer) {
+                        footer.innerHTML = data;
+                    } else {
+                        console.error('Footer element not found.');
+                    }
+                })
+                .catch(error => console.error('Error loading footer:', error));
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        // Mengambil data dari Google Spreadsheet
+        fetch('https://sheets.googleapis.com/v4/spreadsheets/12815U2HdTNt1Zm_evcbVkzv-jz9i5EtDd8OKDH-Glpc/values/Form%20Responses%201?key=AIzaSyAW_pHWZZWg5sgSu4SOeg07QuJvvkeVbdI')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch data from Google Spreadsheet');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Data dari spreadsheet:', data);
+        values = data.values; // Menyimpan data untuk digunakan di seluruh skrip
+        // ...
+        // Proses data yang diperoleh dari spreadsheet
+        values = data.values; // Menyimpan data untuk digunakan di seluruh skrip
+        const resultsDiv = document.getElementById('results');
+        if (resultsDiv) {
+            // Tampilkan hasil pencarian berdasarkan nama
+            document.getElementById('search-input').addEventListener('input', function () {
+                const searchValue = this.value.toLowerCase();
+                let resultsHtml = '';
+                values.forEach(row => {
+                    const fullName = row[4]; // Nama Lengkap (kolom ke-5)
+                    const statusPendaftaran = row[1]; // Jenjang Pendidikan (kolom ke-26) - sesuaikan dengan indeks yang tepat
+                    if (fullName.toLowerCase().includes(searchValue)) {
+                        resultsHtml += `
+                            <div class="col-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${fullName}</h5>
+                                        <p class="card-text">Status: ${statusPendaftaran}</p>
+                                        <button class="btn btn-primary" onclick="showDetails('${fullName}')">Detail</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                resultsDiv.innerHTML = resultsHtml;
+            });
+        } else {
+            console.error('Results element not found.');
+        }
+    })
+    .catch(error => console.error('Error fetching data from Google Spreadsheet:', error));
+
+// Fungsi untuk menampilkan detail informasi
+function showDetails(fullName) {
+    // Cari data berdasarkan nama lengkap
+    const data = values.find(row => row[4] === fullName);
+    if (data) {
+        // Tampilkan informasi lengkap
+        alert(`Detail ${fullName}:\nJenjang Pendidikan: ${data[1]}\nJenis Pendaftaran: ${data[2]}\nTanggal Pendaftaran: ${data[3]}`);
+    } else {
+        alert(`Data untuk ${fullName} tidak ditemukan.`);
+    }
+}
+
+    </script>
+
+</body>
+
+</html>

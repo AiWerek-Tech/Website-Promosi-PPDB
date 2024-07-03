@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>PPDB | SMP-SMA ADVENT SOGOKMO</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.ico" rel="icon">
+  <link href="../assets/img/favicon.ico" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../style.css" rel="stylesheet">
+
+  <!-- Other scripts -->
+<script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="../assets/vendor/aos/aos.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="../assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="../assets/js/main.js"></script>
+
+<!-- Visitor Counter Script -->
+<script>
+// Function to update visitor counts
+function updateVisitorCounts() {
+  const today = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+  const yesterday = new Date(Date.now() - 864e5).toISOString().split('T')[0]; // Calculate yesterday's date
+
+  // Retrieve visitor counts from localStorage
+  let visitorData = JSON.parse(localStorage.getItem('visitorData')) || {
+    total: 0,
+    today: {},
+    yesterday: 0
+  };
+
+  // Increment total visitors if today's visit is not recorded
+  if (!visitorData.today[today]) {
+    visitorData.total++;
+    visitorData.today[today] = 1;
+  }
+
+  // Update yesterday's visitor count if it's not today
+  if (!visitorData.today[yesterday] && visitorData.yesterday !== visitorData.today[yesterday]) {
+    visitorData.yesterday = visitorData.today[yesterday] || 0;
+  }
+
+  // Save updated visitor data back to localStorage
+  localStorage.setItem('visitorData', JSON.stringify(visitorData));
+
+  // Update the visitor count display in the footer
+  document.getElementById('total-visitors').innerText = `Total Pengunjung: ${visitorData.total}`;
+  document.getElementById('today-visitors').innerText = `Pengunjung Hari Ini: ${visitorData.today[today] || 0}`;
+  document.getElementById('yesterday-visitors').innerText = `Pengunjung Kemarin: ${visitorData.yesterday}`;
+}
+
+// Call the function to update visitor counts when the page loads
+updateVisitorCounts();
+</script>
+
+
+<!--   <style>
+    .helpdesk img:hover {
+      transform: scale(1.1);
+    } 
+  </style> -->
+  <style>
+    /* CSS tambahan untuk penyesuaian gambar */
+    .gambar-hero {
+      width: 80%; /* Sesuaikan lebar gambar sesuai kebutuhan */
+      border-radius: 10px; /* Efek sudut membulatkan gambar */
+      position: absolute; /* Menempatkan gambar secara absolut */
+      bottom: 0; /* Menempatkan gambar di bagian bawah hero section */
+      right: 0; /* Menempatkan gambar di bagian kanan hero section */
+      transform: translateX(-50%); /* Untuk memposisikan gambar di tengah horizontal */
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- MENU NAVIGATION -->
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <!--<h1 class="logo me-auto"><a href="index.html">Presento<span>.</span></a></h1>-->
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="" class="logo me-auto"><img src="../assets/img/wmvaappdb.png" alt="Logo WMVAA PPDB"></a>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" style="color: #fff;" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="../#persyaratan">Persyaratan</a></li>
+          <li class="dropdown"><a href="../#services"><span>Informasi</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="../page/pengumuman.html">Pengumuman</a></li>
+              <li><a href="../#fasilitas">Fasilitas Sekolah</a></li>
+              <li><a href="../#services">Program Pengembangan</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <a href="../#contact" class="get-started-btn scrollto">Hubungi Kami</a>
+      <!-- DESKTOP NAVIGATION -->
+
+      <!-- <a class="helpdesk" style="margin-left: 20px; margin-right: 10px;" href="https://wa.me/6282190822641" target="_blank">
+        <img style="height: 50px; text-shadow: 0 5px 10px rgba(0, 0, 0, .3); transition: transform 0.5s;" src="../assets/img/help-desk.png">
+      </a> -->
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <ol style="font-family: Poppins, sans-serif;">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#services">Informasi</a></li>
+          <li>Pengumuman</li>
+        </ol>
+        <h2>Pengumuman</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="website" class="content">
+      <div class="container" data-aos="fade-up">
+        <div class="waktu-daftar" style="text-align: center;">
+          <h4 >Waktu Pendaftaran:</h4>
+        <p> Sosialiasi dan Promosi <br><strong>5 - 9 Juni 2023</strong></p><br>
+        <p> Pendaftaran PPDB<br><strong>12 Juni - 7 Juli 2023</strong></p><br>
+        <p> Pengenalan Lingkungan Sekolah <br><strong>10 - 12 Juli 2023</strong></p><br>
+        <p> Mulai KBM Semester Baru <br><strong>17 Juli 2023</strong></p>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+  <section>
+    <div class="custom-shape-divider-bottom-1686213925">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+        <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+        <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+    </svg>
+</div>
+  </section>
+
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="container footer-bottom">
+    <div class="footer-columns row">
+      <div class="footer-column col-md-4">
+        <div class="">
+          <p><strong style="color: lightyellow;">Visi Kami</strong><br>
+          Pendidikan Advent menetapkan standar untuk berkharakter seperti Yesus Kristus, berprestasi dan terampil dalam ilmu pengetahuan, seni dan teknologi, serta kreatif, produktif dan mandiri.</p>
+        </div>
+         <a href="" class="btn-success scrollto">Selengkapnya tentang Visi & Misi ></a>
+      </div>
+
+      <div class="footer-column col-md-3">
+        <div class="footer-menu">
+          <p><strong style="color: lightyellow;">Link Terkait:</strong><p>
+            <a href=""><strong>Visi & Misi</strong></a><br>
+            <a href=""><strong>Fasilitas</strong></a><br>
+            <a href=""><strong>Program</strong></a>
+        </div>
+      </div>
+      <div class="footer-column col-md-5">
+        <div class="visitor-count">
+          <!-- <h4 class="visitor-title">Pengunjung:</h4> -->
+          <span style="color: lightyellow;"><strong>Pengunjung:</strong></span><br>
+          <span class="visitor-number" id="total-visitors">0</span> | 
+          <span class="visitor-number" id="today-visitors">0</span> | 
+          <span class="visitor-number" id="yesterday-visitors">0</span>
+        </div> 
+        <!-- <div class="visitor-count">
+          <h4 class="visitor-title">Total Pengunjung</h4>
+          <div class="visitor-number" id="total-visitors">0</div>
+          <div class="visitor-number" id="today-visitors">0</div>
+          <div class="visitor-number" id="yesterday-visitors">0</div>
+        </div> -->
+      </div>
+    </div>
+    <br>
+    <div class="footer-column col-md-12 copyright">
+        <div class="">
+          &copy; 2024 <strong><span>SMP-SMA ADVENT SOGOKMO</span></strong>. All Rights Reserved
+        </div>
+        Designed by <a href="http://aiwerek.tech/" target="_blank"><strong><span>AiWerek Tech</span></strong></a>
+      </div>
+
+  </div>
+</footer>
+<!-- End Footer -->
+
+  <!-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> -->
+
+
+
+
+
+  <a href="https://wa.me/6282190822641" class="whatsapp-float" target="_blank">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
+  <script type="text/javascript">
+    /**
+   * PAGE VIEW COUNTER
+   */
+  // Function to update visitor counts
+    function updateVisitorCounts() {
+      const today = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+      const yesterday = new Date(Date.now() - 864e5).toISOString().split('T')[0]; // Calculate yesterday's date
+
+      // Retrieve visitor counts from localStorage
+      let visitorData = JSON.parse(localStorage.getItem('visitorData')) || {
+        total: 0,
+        today: {},
+        yesterday: 0
+      };
+
+      // Increment total visitors if today's visit is not recorded
+      if (!visitorData.today[today]) {
+        visitorData.total++;
+        visitorData.today[today] = 1;
+      }
+
+      // Update yesterday's visitor count if it's not today
+      if (!visitorData.today[yesterday] && visitorData.yesterday !== visitorData.today[yesterday]) {
+        visitorData.yesterday = visitorData.today[yesterday] || 0;
+      }
+
+      // Save updated visitor data back to localStorage
+      localStorage.setItem('visitorData', JSON.stringify(visitorData));
+
+      // Update the visitor count display in the footer
+      document.getElementById('total-visitors').innerText = `Total Pengunjung: ${visitorData.total}`;
+      document.getElementById('today-visitors').innerText = `Pengunjung Hari Ini: ${visitorData.today[today] || 0}`;
+      document.getElementById('yesterday-visitors').innerText = `Pengunjung Kemarin: ${visitorData.yesterday}`;
+    }
+
+    // Call the function to update visitor counts when the page loads
+    updateVisitorCounts();
+
+  </script>
+</body>
+
+</html>

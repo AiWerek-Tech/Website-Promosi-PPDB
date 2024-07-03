@@ -1,0 +1,15 @@
+bagaimana jia struktur direktori saya seperti ini:
+
+- index.html (halaman utama)
+- p/
+  - jumlah_pendaftar.html (contoh halaman lain)
+- template/
+  - header.html
+  - footer.html
+- assets/
+  - js/
+    - header.js
+    - footer.js
+- assets/
+  - css/
+    - styles.css

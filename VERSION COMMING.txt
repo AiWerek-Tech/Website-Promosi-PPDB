@@ -1,0 +1,4 @@
+1. CountDown Waktu Pendaftaran
+2. Terapkan Accordion Persyaratan
+3. FAQ
+4. Pengumuman

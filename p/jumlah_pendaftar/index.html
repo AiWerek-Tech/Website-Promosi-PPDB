@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../../template/head.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load head.html');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Ubah path untuk link CSS
+                    data = data.replace(/href="assets\//g, 'href="../../assets/');
+                    data = data.replace(/href="style.css/g, 'href="../../style.css');
+                    // Ubah path untuk script JavaScript
+                    data = data.replace(/src="assets\//g, 'src="../../assets/');
+
+                    document.head.innerHTML += data;
+                    // Atur judul halaman khusus di sini
+                    document.title = "Jumlah Pendaftar PPDB | SMP-SMA ADVENT SOGOKMO";
+                })
+                .catch(error => console.error('Error loading head:', error));
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        .total-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(78, 84, 200, 1), rgba(143, 148, 251, 1));
+            color: white;
+            font-size: 2em;
+            height: 150px;
+            border-radius: 10px;
+            margin: 20px 0;
+            animation: countUp 2s ease-in-out forwards;
+            text-align: center;
+            /* Menyesuaikan posisi teks rata tengah */
+        }
+
+        .total-box-title {
+            font-size: 0.5em;
+            margin-bottom: 10px;
+        }
+
+        @keyframes countUp {
+            0% {
+                content: "0";
+            }
+
+            100% {
+                content: attr(data-count);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .total-box {
+                font-size: 1.5em;
+                height: 100px;
+            }
+
+            .col-md-6 {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Statically define canvas size */
+        #smpChart,
+        #smaChart {
+            width: 100%;
+            max-width: 400px;
+            /* Define maximum width */
+            height: auto;
+            margin: 0 auto;
+            /* Center align the charts */
+            display: block;
+            /* Ensure block display for canvas */
+        }
+
+    </style>
+</head>
+<header id="header"></header>
+
+<body>
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="container">
+        <ol style="font-family: Poppins, sans-serif;">
+          <li><a href="../../">Home</a></li>
+          <li><a href="">Info</a></li>
+          <li>Jumlah Pendaftar</li>
+        </ol>
+        <!-- <h3>Jumlah Pendaftar</h3> -->
+      </div>
+    </div>
+    <!-- End Breadcrumbs -->
+    <main>
+      <div class="container mt-5">
+        <!-- <h1 class="text-center">Dashboard PPDB</h1> -->
+        <div class="row">
+            <div class="col-12">
+                <div id="totalBox" class="total-box" data-count="0">
+                    <h4>Jumlah Pendaftar</h4>
+                    <strong><span id="totalCount">0</span></strong>
+                    <!-- <span style="font-size: 12px;"><em>Last updated:</em></span> -->
+                    <span style="font-size: 12px;" id="lastUpdate"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-center">Jumlah Pendaftar SMP</h4>
+                <canvas id="smpChart"></canvas>
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-center">Jumlah Pendaftar SMA</h4>
+                <canvas id="smaChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <br>
+    </main>
+    
+<!--       <section>
+    <div class="custom-shape-divider-bottom-1686213925">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+        <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+        <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+    </svg>
+</div>
+  </section> -->
+    <footer id="footer"></footer>
+
+    <!-- Script untuk memuat header dan footer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Memuat header
+            fetch('../../template/header.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load header.html');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Manipulasi semua href di dalam data
+                    data = data.replace(/href=""/g, 'href="../../"');
+                    data = data.replace(/href="#hero"/g, 'href="../../"');
+                    data = data.replace(/href="#persyaratan"/g, 'href="../../#persyaratan"');
+                    data = data.replace(/href="#services"/g, 'href="../../#services"');
+                    data = data.replace(/href="#fasilitas"/g, 'href="../../#fasilitas"');
+                    data = data.replace(/href="#contact"/g, 'href="../../#contact"');
+                    data = data.replace(/href="p\/jumlah_pendaftar\/"/g, 'href=""');
+                    // Manipulasi semua src di dalam data
+                    data = data.replace(/src="assets\/img\/wmvaappdb\.png"/g, 'src="../../assets/img/wmvaappdb.png"');
+                    // Masukkan header.html ke dalam elemen header
+                    const header = document.getElementById('header');
+                    if (header) {
+                        header.innerHTML = data;
+                    } else {
+                        console.error('Header element not found.');
+                    }
+                })
+                .catch(error => console.error('Error loading header:', error));
+
+            // Memuat footer
+                fetch('../../template/footer.html')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to load footer.html');
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        // Manipulasi semua href di dalam data
+                        data = data.replace(/href="#hero"/g, 'href="../../"');
+                        data = data.replace(/href="#persyaratan"/g, 'href="../../#persyaratan"');
+                        data = data.replace(/href="#services"/g, 'href="../../#services"');
+                        data = data.replace(/href="#fasilitas"/g, 'href="../../#fasilitas"');
+                        data = data.replace(/href="#contact"/g, 'href="../../#contact"');
+                        // Manipulasi semua src di dalam data
+                        data = data.replace(/src="assets\/img\/adventist_education_logo\.png"/g, 'src="../../assets/img/adventist_education_logo.png"');
+                        data = data.replace(/src="assets\/img\/kumerlogo\.png"/g, 'src="../../assets/img/kumerlogo.png"');
+                        // Masukkan footer.html ke dalam elemen footer
+                        const footer = document.getElementById('footer');
+                        if (footer) {
+                            footer.innerHTML = data;
+                        } else {
+                            console.error('Footer element not found.');
+                        }
+                    })
+                    .catch(error => console.error('Error loading footer:', error));
+
+        });
+    </script>
+
+    <script>
+        const spreadsheetId = '12815U2HdTNt1Zm_evcbVkzv-jz9i5EtDd8OKDH-Glpc';
+        const apiKey = 'AIzaSyAW_pHWZZWg5sgSu4SOeg07QuJvvkeVbdI';
+        const range = 'Form Responses 1!A1:AC100';
+
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const rows = data.values;
+                const processedData = processData(rows);
+
+                displayTotalBox(processedData.totalSiswa);
+                createCharts(processedData);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        function processData(rows) {
+            let totalSiswa = rows.length - 1; // Mengurangi 1 untuk header
+            let totalSMP = 0;
+            let totalSMA = 0;
+            let genderSMP = {
+                male: 0,
+                female: 0
+            };
+            let genderSMA = {
+                male: 0,
+                female: 0
+            };
+
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const jenjang = row[1]; // Asumsikan kolom 2 adalah jenjang
+                const gender = row[7]; // Asumsikan kolom 9 adalah jenis kelamin
+
+                if (jenjang === 'SMP') {
+                    totalSMP++;
+                    if (gender.toLowerCase() === 'laki-laki') genderSMP.male++;
+                    if (gender.toLowerCase() === 'perempuan') genderSMP.female++;
+                } else if (jenjang === 'SMA') {
+                    totalSMA++;
+                    if (gender.toLowerCase() === 'laki-laki') genderSMA.male++;
+                    if (gender.toLowerCase() === 'perempuan') genderSMA.female++;
+                }
+            }
+
+            return {
+                totalSiswa,
+                totalSMP,
+                totalSMA,
+                genderSMP,
+                genderSMA
+            };
+        }
+
+        function displayTotalBox(total) {
+            const totalBox = document.getElementById('totalBox');
+            const totalCount = document.getElementById('totalCount');
+            totalBox.setAttribute('data-count', total);
+
+            let count = 0;
+            const interval = setInterval(() => {
+                if (count < total) {
+                    count++;
+                    totalCount.textContent = count;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 20);
+        }
+
+        function createCharts(data) {
+            const smpCtx = document.getElementById('smpChart').getContext('2d');
+            const smaCtx = document.getElementById('smaChart').getContext('2d');
+
+            const smpChart = new Chart(smpCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Laki-laki', 'Perempuan'],
+                    datasets: [{
+                        label: 'SMP',
+                        data: [data.genderSMP.male, data.genderSMP.female],
+                        backgroundColor: ['#36A2EB', '#FFCE56'],
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false
+                }
+            });
+
+            const smaChart = new Chart(smaCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Laki-laki', 'Perempuan'],
+                    datasets: [{
+                        label: 'SMA',
+                        data: [data.genderSMA.male, data.genderSMA.female],
+                        backgroundColor: ['#36A2EB', '#FFCE56'],
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+    // Memuat data dari Google Spreadsheet
+    function fetchData() {
+        const spreadsheetId = '12815U2HdTNt1Zm_evcbVkzv-jz9i5EtDd8OKDH-Glpc';
+        const apiKey = 'AIzaSyAW_pHWZZWg5sgSu4SOeg07QuJvvkeVbdI';
+        const range = 'Form Responses 1!A1:AC100';
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const rows = data.values;
+                const lastUpdated = getLastUpdateDateTime(rows); // Mendapatkan tanggal dan waktu terakhir dari data
+
+                // Menampilkan tanggal dan waktu terakhir di dalam elemen HTML
+                const lastUpdateElement = document.getElementById('lastUpdate');
+                if (lastUpdateElement) {
+                    const formattedDateTime = `${lastUpdated.date} ${lastUpdated.time}`;
+                    lastUpdateElement.textContent = `Last updated: ${formattedDateTime}`;
+                } else {
+                    console.error('Element #lastUpdate not found.');
+                }
+
+                const processedData = processData(rows);
+
+                displayTotalBox(processedData.totalSiswa);
+                createCharts(processedData);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+    function getLastUpdateDateTime(rows) {
+        // Menggunakan data terakhir dari spreadsheet, misalnya dari kolom tanggal mendaftar
+        const lastRow = rows[rows.length - 1];
+        const lastUpdateDateTime = lastRow[0]; // Asumsikan kolom pertama adalah tanggal mendaftar
+
+        // Memisahkan tanggal, bulan, dan tahun dari format DD/MM/YYYY
+        const parts = lastUpdateDateTime.split('/');
+        const day = parts[0];
+        const month = parts[1];
+        const year = parts[2];
+
+        // Format ulang tanggal sesuai keinginan Anda (tanggal bulan tahun)
+        const formattedDate = `${day} ${getMonthName(month)} ${year}`;
+
+        // Mengambil jam dan menit dari format waktu
+        if (lastRow.length > 1) {
+            const timeParts = lastRow[1].split(':'); // Asumsikan kolom kedua adalah waktu
+            const hour = timeParts[0];
+            const minute = timeParts[1];
+
+            // Format ulang waktu sesuai keinginan Anda (jam:menit)
+            const formattedTime = `${hour}:${minute}`;
+
+            return { date: formattedDate, time: formattedTime };
+        }
+
+        return { date: formattedDate, time: null }; // Jika tidak ada waktu, kembalikan null
+    }
+
+    // Fungsi untuk mendapatkan nama bulan dari angka bulan (1-12)
+    function getMonthName(month) {
+        const monthNames = [
+            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        ];
+        return monthNames[parseInt(month) - 1]; // Kurangi 1 karena array dimulai dari 0
+    }
+
+    // Panggil fungsi fetchData() saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', fetchData);
+</script>
+
+
+</body>
+
+</html>

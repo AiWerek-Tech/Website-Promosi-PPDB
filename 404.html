@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <title>404 Not Found | SMP-SMA ADVENT SOGOKMO</title>
+
+  <!-- Favicons -->
+  <link rel="icon" href="assets/img/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/img/favicon.ico">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="style.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Gunakan min-height agar body selalu setinggi viewport */
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    header {
+      width: 100%;
+      background-color: #343a40;
+      padding: 10px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 999; /* Pastikan header di atas konten */
+    }
+
+    .logo img {
+      max-height: 50px;
+    }
+
+    .navbar {
+      margin-left: auto;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar ul li {
+      margin: 0 10px;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .get-started-btn {
+      background: #ff4a57;
+      padding: 10px 20px;
+      border-radius: 50px;
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .notification-icon {
+      position: relative;
+      color: white;
+    }
+
+    .container-main {
+      text-align: center;
+      padding-top: 80px; /* Sesuaikan dengan tinggi header Anda */
+      padding-bottom: 80px; /* Sesuaikan dengan tinggi footer Anda */
+    }
+
+    .error-message {
+      font-size: 1.5rem;
+      color: #6c757d;
+      margin-top: 0.5rem;
+    }
+
+    .back-home {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(to right, rgba(144, 0, 149, 1), rgba(56, 154, 255, 1));
+      border: none;
+      border-radius: 50px;
+      transition: background-color 0.3s, transform 0.3s;
+      text-decoration: none;
+    }
+
+    .back-home:hover {
+      background: linear-gradient(to right, rgba(56, 154, 255, 1), rgba(144, 0, 149, 1));
+      transform: scale(1.1);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .floating-img {
+      width: 100%;
+      max-width: 300px;
+      animation: float 3s infinite;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+  background-color: #343a40;
+  color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%; /* Mengatur lebar footer agar menutupi layar penuh */
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Mengatur agar kolom-kolom footer terdistribusi dengan baik */
+  padding: 0 20px; /* Menambahkan padding di sisi kiri dan kanan */
+}
+
+.footer-column {
+  flex: 1;
+  margin-bottom: 20px; /* Menambahkan margin bottom untuk pemisah antar kolom */
+}
+
+.footer-menu a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-menu a:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 20px;
+  text-align: center; /* Pusatkan teks hak cipta */
+}
+
+  </style>
+</head>
+<body>
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <a href="/" class="logo me-auto"><img src="assets/img/wmvaappdb.png" alt="Logo WMVAA PPDB"></a>
+
+      <!-- <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" style="color: #fff;" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#persyaratan">Persyaratan</a></li>
+          <li><a class="nav-link scrollto" href="#" data-bs-toggle="modal" data-bs-target="#jadwalModal">Jadwal</a></li>
+          <li class="dropdown">
+            <a href="#services"><span>Info</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#fasilitas">Fasilitas Sekolah</a></li>
+              <li><a href="#services">Program Unggulan</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav> -->
+
+      <!-- <a href="#contact" class="get-started-btn">Hubungi Kami</a> -->
+
+      <!-- <a href="#" class="notification-icon" data-bs-toggle="modal" data-bs-target="#notificationModal" style="position: relative; margin-left: 20px;margin-right: 20px;">
+        <i class="bi bi-bell-fill" style="font-size: 15px; color: white;"></i>
+        <span style="position: absolute; top: -2px; right: -2px; width: 6px; height: 6px; background-color: red; border-radius: 50%;"></span>
+      </a> -->
+    </div>
+  </header>
+
+  <div class="container-main">
+    <img src="assets/img/error404.png" class="img-fluid floating-img" alt="404 Image">
+    <p class="error-message">Oops! Halaman yang Anda cari tidak ditemukan.</p>
+    <a href="/" class="btn back-home">Kembali ke Halaman Utama</a>
+  </div>
+
+  <footer id="footer">
+  <div class="container-fluid px-0">
+    <div class="footer-columns row mx-0">
+      <div class="col-md-12 text-center text-white px-0">
+        &copy; 2024 <strong>SMP-SMA ADVENT SOGOKMO</strong>. All Rights Reserved<br>
+        Designed by <a href="http://aiwerek.tech/" target="_blank"><strong>AiWerek Tech</strong></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
